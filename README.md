@@ -1,6 +1,6 @@
 # Eurorack potentiometer module
 
-*Warning: Design not tested yet.*
+<img align="right" src="./PlaceholderImage.png">
 
 ## Design files
 
