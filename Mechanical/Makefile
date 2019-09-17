@@ -1,4 +1,4 @@
-MAIN_SOURCE_FILE := eurorack-buffered-mult-module.scad
+MAIN_SOURCE_FILE := eurorack-potentiometer-module.scad
 ALL := exports/panel.dxf exports/panel.svg exports/panel.stl exports/assembly.stl
 
 .PHONY: all clean

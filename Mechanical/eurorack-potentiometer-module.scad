@@ -12,7 +12,7 @@ xOffsetPCB = 4.3 + (EURORACK_PANEL_WIDTH_4HP - 4.3 - 7.0 - 4.4) / 2;
 
 xPosConn = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ];
 
-module EurorackBufferedMultModule_PCB()
+module EurorackPotentiometerModule_PCB()
 {
     color("green")
     if ($preview)
@@ -30,7 +30,7 @@ module EurorackBufferedMultModule_PCB()
     }
 }
 
-module EurorackBufferedMultModule_Panel_2D()
+module EurorackPotentiometerModule_Panel_2D()
 {
     xOffset = xOffsetPCB + 35RAPC2AV_JACK_RADIUS + 4.4 - 1;
     yOffset = yOffsetPCB;
@@ -52,10 +52,10 @@ module panelText(size, txt)
     text(size=size, valign="center", font="Helvetica", txt);
 }
 
-module EurorackBufferedMultModule_Panel_3D()
+module EurorackPotentiometerModule_Panel_3D()
 {
     linear_extrude(height = EURORACK_PANEL_THICKNESS)
-    EurorackBufferedMultModule_Panel_2D();
+    EurorackPotentiometerModule_Panel_2D();
 
     translate([0, yOffsetPCB, EURORACK_PANEL_THICKNESS])
     linear_extrude(height = EURORACK_PANEL_THICKNESS/3)
@@ -73,14 +73,14 @@ module EurorackBufferedMultModule_Panel_3D()
     }
 }
 
-module EurorackBufferedMultModule_Assembly()
+module EurorackPotentiometerModule_Assembly()
 {
-    EurorackBufferedMultModule_Panel_3D();
+    EurorackPotentiometerModule_Panel_3D();
 
     translate([xOffsetPCB, yOffsetPCB, 0])
     {
         translate([-pcbThickness, 0, 0])
-        rotate([0, 90, 0]) EurorackBufferedMultModule_PCB();
+        rotate([0, 90, 0]) EurorackPotentiometerModule_PCB();
 
         for (idx = [0 : 9])
         {
@@ -91,7 +91,7 @@ module EurorackBufferedMultModule_Assembly()
     }
 }
 
-//EurorackBufferedMultModule_PCB();
-//EurorackBufferedMultModule_Panel_2D();
-//EurorackBufferedMultModule_Panel_3D();
-EurorackBufferedMultModule_Assembly();
+//EurorackPotentiometerModule_PCB();
+//EurorackPotentiometerModule_Panel_2D();
+//EurorackPotentiometerModule_Panel_3D();
+EurorackPotentiometerModule_Assembly();

@@ -1,3 +1,3 @@
-use <../eurorack-buffered-mult-module.scad>
+use <../eurorack-potentiometer-module.scad>
 
-EurorackBufferedMultModule_Panel_2D();
+EurorackPotentiometerModule_Panel_2D();
