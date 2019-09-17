@@ -15,15 +15,15 @@ The schematic, board layout and bill of materials can be viewed [here](https://u
 ## TODO
 
 * [ ] Consider providing some way of connecting one of the outputs to the CV pins on the power connector
-* [ ] Consider prodiving different voltage outputs (e.g. 0 to 10 volts, -5 to +5 volts)
+* [ ] Consider providing different voltage outputs (e.g. 0 to 10 volts, -5 to +5 volts)
 * [ ] Consider adding silkscreen for power connector to both sides of the board
-* [ ] Remove silkscreen lines from around potentiomters
-* [ ] Move potentiomters to top side of board
+* [ ] Remove silkscreen lines from around potentiometers
+* [ ] Move potentiometers to top side of board
 * [ ] Document that phone connectors can be mounted on either side of the board (to allow for more space between pots and connectors)
 * [ ] Move silkscreen text (board name and version number) to bottom of board ... or maybe put it on both sides
-* [ ] Should the tip shunt be connected to ground? I think that is unecessary on output connectors and actually a bad idea because it just wastes power through the 1K resistor when no cable is plugged in.
-* [ ] Check names and pin numbers on the phone connectors, I think I might have swapped the tip spring and shunt terminal. Also I don't really like those names ... those are the names used in the datasheet so I should prohably keep them but I'd probably prefer "tip" and "tip switch" or "tip shunt".
-* [ ] Consider the alternate op-amp that I found when ordering parts on Digikey ([497-2208-1-ND](https://www.digikey.com.au/product-detail/en/TL081CDT/497-2208-1-ND/) instead of [296-15001-1-ND](https://www.digikey.com.au/product-detail/en/TL081CDR/296-15001-1-ND/)). It looks like it has the same footprint but is a little cheaper.
+* [ ] Should the tip shunt be connected to ground? I think that is unnecessary on output connectors and actually a bad idea because it just wastes power through the 1K resistor when no cable is plugged in.
+* [ ] Check names and pin numbers on the phone connectors, I think I might have swapped the tip spring and shunt terminal. Also I don't really like those names ... those are the names used in the datasheet so I should probably keep them but I'd probably prefer "tip" and "tip switch" or "tip shunt".
+* [ ] Consider the alternate op-amp that I found when ordering parts on DigiKey ([497-2208-1-ND](https://www.digikey.com.au/product-detail/en/TL081CDT/497-2208-1-ND/) instead of [296-15001-1-ND](https://www.digikey.com.au/product-detail/en/TL081CDR/296-15001-1-ND/)). It looks like it has the same footprint but is a little cheaper.
 
 ## Licence
 
