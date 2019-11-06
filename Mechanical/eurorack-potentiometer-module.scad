@@ -2,15 +2,24 @@ $fn = 64;
 
 include <eurorack-common/panels.scad>
 include <eurorack-common/Switchcraft_35RAPC2AV.scad>
+include <eurorack-common/TTELectronics_P160KN.scad>
 
-pcbHeight = 7.5 + 10 + 15 + 10 + 15 + 10 + 15 + 10 + 7.5;
-pcbWidth = 15;
+POT_SHAFT_RADIUS = TT_ELECTRONICS_P160KN_POT_SHAFT_RADIUS;
+POT_SHAFT_HEIGHT = TT_ELECTRONICS_P160KN_POT_SHAFT_HEIGHT;
+
+pcbHeight = 100;
+pcbWidth = 25;
 pcbThickness = 1.6;
 
 yOffsetPCB = (EURORACK_PANEL_HEIGHT - pcbHeight) / 2;
-xOffsetPCB = 4.3 + (EURORACK_PANEL_WIDTH_4HP - 4.3 - 7.0 - 4.4) / 2;
+xOffsetPCB = 4.3 + (EURORACK_PANEL_WIDTH_8HP - 4.3 - 7.0 - 4.4) / 2;
+// ????????????????????????????/
 
-xPosConn = [ 5, 15, 25, 35, 45, 55, 65, 75, 85, 95 ];
+xOffsetJack = xOffsetPCB - pcbThickness - 4.4 - 1;
+xOffsetPot  = xOffsetPCB + POT_SHAFT_HEIGHT;
+
+xPosConnJack = [ 95.25, 70.75, 46.25, 21.75 ];
+xPosConnPot  = [ 83.00, 58.50, 34.00,  9.50 ];
 
 module EurorackPotentiometerModule_PCB()
 {
@@ -18,7 +27,7 @@ module EurorackPotentiometerModule_PCB()
     if ($preview)
     {
         // Use Upverters' 3D model when doing a preview ...
-        scale([1, 1, pcbThickness * 2])
+        //scale([1, 1, pcbThickness * 2])
         translate([0, 0, pcbThickness/3])
         import("../Upverter exports/3d model.stl");
     }
@@ -32,17 +41,17 @@ module EurorackPotentiometerModule_PCB()
 
 module EurorackPotentiometerModule_Panel_2D()
 {
-    xOffset = xOffsetPCB + 35RAPC2AV_JACK_RADIUS + 4.4 - 1;
-    yOffset = yOffsetPCB;
-
     difference()
     {
-        EurorackPanel_4HP();
+        EurorackPanel_8HP();
 
-        translate([xOffset, yOffset, 0])
-        for (idx = [0 : 9])
+        for (idx = [0 : 3])
         {
-            translate([0, xPosConn[idx], 0]) circle(r=35RAPC2AV_JACK_RADIUS);
+            yOffsetJack = yOffsetPCB + xPosConnJack[idx];
+            yOffsetPot  = yOffsetPCB + xPosConnPot[idx];
+            
+            translate([xOffsetJack, yOffsetJack]) circle(r=35RAPC2AV_JACK_RADIUS);
+            translate([xOffsetPot,  yOffsetPot])  circle(r=POT_SHAFT_RADIUS);
         }
     }
 }
@@ -59,17 +68,13 @@ module EurorackPotentiometerModule_Panel_3D()
 
     translate([0, yOffsetPCB, EURORACK_PANEL_THICKNESS])
     linear_extrude(height = EURORACK_PANEL_THICKNESS/3)
+    for (idx = [0 : 3])
     {
-        translate([2, xPosConn[0]]) panelText(2.3, "Out8");
-        translate([2, xPosConn[1]]) panelText(2.3, "Out7");
-        translate([2, xPosConn[2]]) panelText(2.3, "Out6");
-        translate([2, xPosConn[3]]) panelText(2.3, "Out5");
-        translate([2, xPosConn[4]]) panelText(2.3, "In2");
-        translate([2, xPosConn[5]]) panelText(2.3, "Out4");
-        translate([2, xPosConn[6]]) panelText(2.3, "Out3");
-        translate([2, xPosConn[7]]) panelText(2.3, "Out2");
-        translate([2, xPosConn[8]]) panelText(2.3, "Out1");
-        translate([2, xPosConn[9]]) panelText(2.3, "In1");
+        translate([xOffsetJack + 5, xPosConnJack[idx]])
+        panelText(2.2, str("Out ", idx+1));
+
+        translate([xOffsetPot - 12, xPosConnPot[idx]])
+        panelText(2.3, str("Pot ", idx+1));
     }
 }
 
@@ -79,14 +84,17 @@ module EurorackPotentiometerModule_Assembly()
 
     translate([xOffsetPCB, yOffsetPCB, 0])
     {
-        translate([-pcbThickness, 0, 0])
-        rotate([0, 90, 0]) EurorackPotentiometerModule_PCB();
+        translate([0, 0, -pcbWidth])
+        rotate([0, 270, 0]) EurorackPotentiometerModule_PCB();
 
-        for (idx = [0 : 9])
+        for (idx = [0 : 3])
         {
-            translate([0, xPosConn[idx], 0])
-            rotate([0, 90, 0])
+            translate([0, xPosConnJack[idx], 0])
+            rotate([0, 90, 180])
             Switchcraft35RAPC2AV();
+
+            // TODO: Put potentiometers here
+            // or fix "../Upverter export/3d model.stl"
         }
     }
 }
@@ -94,4 +102,4 @@ module EurorackPotentiometerModule_Assembly()
 //EurorackPotentiometerModule_PCB();
 //EurorackPotentiometerModule_Panel_2D();
 //EurorackPotentiometerModule_Panel_3D();
-EurorackPotentiometerModule_Assembly();
+//EurorackPotentiometerModule_Assembly();
