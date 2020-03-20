@@ -29,7 +29,7 @@ module EurorackPotentiometerModule_PCB()
         // Use Upverters' 3D model when doing a preview ...
         //scale([1, 1, pcbThickness * 2])
         translate([0, 0, pcbThickness/3])
-        import("../Upverter exports/3d model.stl");
+        import("../PCB/Upverter exports/3d model.stl");
     }
     else
     {
