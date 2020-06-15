@@ -13,10 +13,9 @@ pcbThickness = 1.6;
 
 yOffsetPCB = (EURORACK_PANEL_HEIGHT - pcbHeight) / 2;
 xOffsetPCB = 4.3 + (EURORACK_PANEL_WIDTH_8HP - 4.3 - 7.0 - 4.4) / 2;
-// ????????????????????????????/
 
-xOffsetJack = xOffsetPCB - pcbThickness - 4.4 - 1;
-xOffsetPot  = xOffsetPCB + POT_SHAFT_HEIGHT;
+xOffsetJack = xOffsetPCB - pcbThickness - 4.4 - 2.5;
+xOffsetPot  = xOffsetPCB + POT_SHAFT_HEIGHT - 0.5;
 
 xPosConnJack = [ 95.25, 70.75, 46.25, 21.75 ];
 xPosConnPot  = [ 83.00, 58.50, 34.00,  9.50 ];
@@ -49,7 +48,7 @@ module EurorackPotentiometerModule_Panel_2D()
         {
             yOffsetJack = yOffsetPCB + xPosConnJack[idx];
             yOffsetPot  = yOffsetPCB + xPosConnPot[idx];
-            
+
             translate([xOffsetJack, yOffsetJack]) circle(r=35RAPC2AV_JACK_RADIUS);
             translate([xOffsetPot,  yOffsetPot])  circle(r=POT_SHAFT_RADIUS);
         }
@@ -93,7 +92,7 @@ module EurorackPotentiometerModule_Assembly()
         // Connectors
         for (idx = [0 : 3])
         {
-            translate([0, xPosConnJack[idx], 0])
+            translate([-1.5, xPosConnJack[idx], 0])
             rotate([0, 90, 180])
             Switchcraft35RAPC2AV();
 
