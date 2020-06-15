@@ -2,6 +2,10 @@
 
 TODO: Description here
 
+Photo of PCB loaded by [JLC PCB's](https://jlcpcb.com/smt-assembly) loading service (surface mount components only):
+
+![./jlc-loaded-pcb.jpg](./jlc-loaded-pcb.jpg)
+
 ## TODO
 
 * [ ] Consider providing some way of connecting one of the outputs to the CV pins on the power connector
@@ -17,7 +21,7 @@ TODO: Description here
 
 ## Licence
 
-Copyright © 2017, 2018, 2019 Phil Baldwin
+Copyright © 2017, 2018, 2019, 2020 Phil Baldwin
 
 This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0).
 
