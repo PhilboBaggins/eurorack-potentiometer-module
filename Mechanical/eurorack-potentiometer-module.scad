@@ -63,9 +63,11 @@ module panelText(size, txt)
 
 module EurorackPotentiometerModule_Panel_3D()
 {
+    // Panels
     linear_extrude(height = EURORACK_PANEL_THICKNESS)
     EurorackPotentiometerModule_Panel_2D();
 
+    // Labels
     translate([0, yOffsetPCB, EURORACK_PANEL_THICKNESS])
     linear_extrude(height = EURORACK_PANEL_THICKNESS/3)
     for (idx = [0 : 3])
@@ -84,9 +86,11 @@ module EurorackPotentiometerModule_Assembly()
 
     translate([xOffsetPCB, yOffsetPCB, 0])
     {
+        // Panel
         translate([0, 0, -pcbWidth])
         rotate([0, 270, 0]) EurorackPotentiometerModule_PCB();
 
+        // Connectors
         for (idx = [0 : 3])
         {
             translate([0, xPosConnJack[idx], 0])
